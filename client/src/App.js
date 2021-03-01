@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import { useAuth } from './util/auth';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
-function App() {
+const Test = () => {
+  return 'hello';
+};
+
+const Other = () => {
+  return <div className="w-full min-h-screen bg-blue-400">hello</div>;
+};
+
+const App = () => {
+  const [logged] = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" render={() => (logged ? <Test /> : <Home />)} />
+        <Route
+          exact
+          path="/login"
+          render={() => (logged ? <Redirect to="/" /> : <Login />)}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={() => (logged ? <Redirect to="/" /> : <Signup />)}
+        />
+        <PrivateRoute exact path="/dashboard" component={Other} />
+        <Route exact path="/404" component={Other} />
+        <Redirect to="/404" />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
