@@ -1,6 +1,7 @@
 from flask import request
 from flask_restful import Resource
-from extensions import guard
+from extensions import guard, db
+from models.user import User
 
 
 class SignupAPI(Resource):
@@ -8,15 +9,18 @@ class SignupAPI(Resource):
         req = request.get_json(force=True)
         email = req.get('email', None)
         password = req.get('password', None)
-        print(email, password)
-        user = User(
-            email=email,
-            password=guard.hash_password(password),
-            roles='user'
-        )
-        db.session.add(user)
-        db.session.commit()
-        user = guard.authenticate(email, password)
+        try:
+            user = User(
+                email=email,
+                password=guard.hash_password(password),
+                roles='user'
+            )
+            db.session.add(user)
+            db.session.commit()
+            user = guard.authenticate(email, password)
+        except Exception as e:
+            ret = {'message': 'user exists'}
+            return ret, 401
         ret = {'access_token': guard.encode_jwt_token(user)}
         return ret, 200
 
@@ -26,9 +30,15 @@ class LoginAPI(Resource):
         req = request.get_json(force=True)
         email = req.get('email', None)
         password = req.get('password', None)
-        user = guard.authenticate(email, password)
-        ret = {'access_token': guard.encode_jwt_token(user)}
-        return ret, 200
+        try:
+            user = guard.authenticate(email, password)
+            ret = {'access_token': guard.encode_jwt_token(user)}
+            return ret, 200
+        except:
+            ret = {'message': 'Access denied'}, 401
+            return ret, 401
+        ret = {'message': 'Access denied'}, 401
+        return ret, 401
 
 
 class RefreshAPI(Resource):
