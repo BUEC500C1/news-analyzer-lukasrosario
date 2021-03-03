@@ -31,7 +31,7 @@ const Login = () => {
       </button>
       <p className="text-md text-white inline">
         New user?{' '}
-        <a href="/signup" className="inline text-md text-green-500">
+        <a href="/" className="inline text-md text-green-500">
           Sign up here.
         </a>
       </p>

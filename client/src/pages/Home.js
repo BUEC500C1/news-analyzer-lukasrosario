@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-row">
-      <SignupModal show={show} />
+      <SignupModal show={show} setShow={setShow} />
       <div
         style={{ backgroundImage: `url(${news})` }}
         className="w-7/12 min-h-screen bg-cover bg-bottom"

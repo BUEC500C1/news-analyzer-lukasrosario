@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-const SignupModal = ({ show }) => {
+const SignupModal = ({ show, setShow }) => {
   const [inputs, setInputs] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
@@ -9,8 +9,9 @@ const SignupModal = ({ show }) => {
   };
 
   return (
-    <Modal show={show}>
-      <div className="w-full h-full flex flex-col">
+    <Modal show={show} setShow={setShow}>
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        <p className="text-2xl text-white mb-6">Create an account</p>
         <input
           name="email"
           type="email"

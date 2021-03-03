@@ -9,7 +9,6 @@ import PrivateRoute from './components/PrivateRoute';
 import { useAuth } from './util/auth';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
 
 const Test = () => {
   return 'hello';
@@ -30,11 +29,6 @@ const App = () => {
           exact
           path="/login"
           render={() => (logged ? <Redirect to="/" /> : <Login />)}
-        />
-        <Route
-          exact
-          path="/signup"
-          render={() => (logged ? <Redirect to="/" /> : <Signup />)}
         />
         <PrivateRoute exact path="/dashboard" component={Other} />
         <Route exact path="/404" component={Other} />
