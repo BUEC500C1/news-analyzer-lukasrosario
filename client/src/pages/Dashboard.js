@@ -25,7 +25,12 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <ArticleModal show={show} setShow={setShow} reloadFiles={reloadFiles} />
+      <ArticleModal
+        setLoading={setLoading}
+        show={show}
+        setShow={setShow}
+        reloadFiles={reloadFiles}
+      />
       {loading ? (
         <Loading />
       ) : (

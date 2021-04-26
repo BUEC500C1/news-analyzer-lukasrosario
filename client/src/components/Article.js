@@ -81,7 +81,7 @@ export const SearchModal = ({
   );
 };
 
-export const ArticleModal = ({ show, setShow, reloadFiles }) => {
+export const ArticleModal = ({ show, setShow, reloadFiles, setLoading }) => {
   const [inputs, setInputs] = useState({ title: '', file: null });
 
   const handleChange = (e) => {
@@ -94,8 +94,10 @@ export const ArticleModal = ({ show, setShow, reloadFiles }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     await uploadFile(inputs);
     setShow(false);
+    setLoading(false);
     setInputs({ title: '', file: null });
     reloadFiles();
   };
