@@ -24,8 +24,8 @@ app.config["JWT_REFRESH_LIFESPAN"] = {"days": 30}
 guard.init_app(app, User)
 db.init_app(app)
 
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 
 @app.route("/")
