@@ -1,7 +1,7 @@
 import {
   useHistory,
   useLocation,
-  // useParams,
+  useParams,
   useRouteMatch
 } from 'react-router';
 import { useMemo } from 'react';
@@ -11,6 +11,7 @@ const useRouter = () => {
   const location = useLocation();
   const history = useHistory();
   const match = useRouteMatch();
+  const params = useParams();
   const router = () => {
     return {
       // For convenience add push(), replace(), pathname at top level
@@ -18,6 +19,7 @@ const useRouter = () => {
       replace: history.replace,
       pathname: location.pathname,
       match,
+      params,
       location,
       history
     };
@@ -26,7 +28,7 @@ const useRouter = () => {
   // Return our custom router object
   // Memoize so that a new object is only returned if something changes
   // return useMemo(router, [params, match, location, history]);
-  return useMemo(router, [match, location, history]);
+  return useMemo(router, [match, location, history, params]);
 };
 
 export default useRouter;

@@ -1,8 +1,9 @@
 import flask_sqlalchemy
 from uuid import uuid4
+from extensions import db
 
 
-db = flask_sqlalchemy.SQLAlchemy()
+# db = flask_sqlalchemy.SQLAlchemy()
 
 
 class User(db.Model):
@@ -10,11 +11,12 @@ class User(db.Model):
     email = db.Column(db.Text, unique=True)
     password = db.Column(db.Text)
     roles = db.Column(db.Text)
+    files = db.relationship("File", backref="user")
 
     @property
     def rolenames(self):
         try:
-            return self.roles.split(',')
+            return self.roles.split(",")
         except Exception:
             return []
 

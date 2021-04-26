@@ -9,12 +9,12 @@ const Modal = ({ children, show, setShow }) => {
 
   return (
     <div
-      className={`w-full h-full absolute flex items-center justify-center ${
+      className={`w-full h-full absolute flex items-start justify-center z-50 animate-fade-in ${
         show ? 'flex' : 'hidden'
       }`}
     >
       <div className="w-full h-full absolute bg-black opacity-30 flex items-center justify-center" />
-      <div className="flex relative px-36 py-16 z-10 bg-gray-800 rounded-md">
+      <div className="flex relative px-36 py-16 z-10 bg-gray-800 rounded-md mt-24">
         <button onClick={hide}>
           <FontAwesomeIcon
             className="absolute top-4 right-4 text-2xl text-red-500 cursor-pointer"

@@ -30,13 +30,13 @@ const Home = () => {
         </p>
         <button
           onClick={handleSignupClick}
-          class="w-36 bg-green-500 py-2 rounded-md text-xl text-white hover:bg-green-400"
+          className="w-36 bg-green-500 py-2 rounded-md text-xl text-white hover:bg-green-400"
         >
           Sign up
         </button>
         <button
           onClick={goLogin}
-          class="w-36 border-2 border-green-500 py-2 rounded-md text-xl text-white hover:border-green-400"
+          className="w-36 border-2 border-green-500 py-2 rounded-md text-xl text-white hover:border-green-400"
         >
           Log in
         </button>

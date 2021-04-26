@@ -9,10 +9,9 @@ import PrivateRoute from './components/PrivateRoute';
 import { useAuth } from './util/auth';
 import Home from './pages/Home';
 import Login from './pages/Login';
-
-const Test = () => {
-  return 'hello';
-};
+import Dashboard from './pages/Dashboard';
+import Doc from './pages/Doc';
+import Search from './pages/Search';
 
 const Other = () => {
   return <div className="w-full min-h-screen bg-blue-400">hello</div>;
@@ -24,13 +23,18 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" render={() => (logged ? <Test /> : <Home />)} />
+        <Route
+          exact
+          path="/"
+          render={() => (logged ? <Dashboard /> : <Home />)}
+        />
         <Route
           exact
           path="/login"
           render={() => (logged ? <Redirect to="/" /> : <Login />)}
         />
-        <PrivateRoute exact path="/dashboard" component={Other} />
+        <PrivateRoute exact path="/doc/:id" component={Doc} />
+        <PrivateRoute exact path="/search/:term" component={Search} />
         <Route exact path="/404" component={Other} />
         <Redirect to="/404" />
       </Switch>
