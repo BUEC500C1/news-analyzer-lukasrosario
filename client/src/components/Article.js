@@ -94,9 +94,9 @@ export const ArticleModal = ({ show, setShow, reloadFiles, setLoading }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShow(false);
     setLoading(true);
     await uploadFile(inputs);
-    setShow(false);
     setLoading(false);
     setInputs({ title: '', file: null });
     reloadFiles();
