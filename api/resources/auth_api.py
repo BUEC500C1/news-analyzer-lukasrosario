@@ -16,7 +16,8 @@ class SignupAPI(Resource):
             db.session.add(user)
             db.session.commit()
             user = guard.authenticate(email, password)
-        except:
+        except Exception as e:
+            print(e)
             ret = {"message": "user exists"}
             return ret, 401
         ret = {"access_token": guard.encode_jwt_token(user)}
@@ -33,7 +34,8 @@ class LoginAPI(Resource):
             ret = {"access_token": guard.encode_jwt_token(user)}
             print(user.email)
             return ret, 200
-        except:
+        except Exception as e:
+            print(e)
             ret = {"message": "Access denied"}
             return ret, 401
         ret = {"message": "Access denied"}
