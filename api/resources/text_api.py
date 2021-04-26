@@ -96,8 +96,7 @@ class TextAPI(Resource):
             ret = text_content
             return ret, 200
 
-        except Exception as e:
-            print(e)
+        except:
             ret = {"message": "Server Error"}
             return ret, 500
 

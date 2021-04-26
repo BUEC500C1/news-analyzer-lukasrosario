@@ -54,8 +54,7 @@ class FileAPI(Resource):
             ret = {"message": "OK"}
             return ret, 200
 
-        except Exception as e:
-            print(e)
+        except:
             ret = {"message": "Server Error"}
             return ret, 500
 
@@ -73,8 +72,7 @@ class FileAPI(Resource):
                 files = File.get_all_files(current_user.id)
                 ret = {"files": files}
                 return ret, 200
-            except Exception as e:
-                print(e)
+            except:
                 return 500
         ret = {"message": "Error"}
         return ret, 400
@@ -126,8 +124,7 @@ class ImportAPI(Resource):
             ret = {"message": "OK"}
             return ret, 200
 
-        except Exception as e:
-            print(e)
+        except:
             ret = {"message": "Server Error"}
             return ret, 500
 

@@ -12,11 +12,7 @@ const SignupModal = ({ show, setShow }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (await apiSignup(inputs)) {
-      console.log('success');
-    } else {
-      console.log('nah');
-    }
+    await apiSignup(inputs);
   };
 
   return (

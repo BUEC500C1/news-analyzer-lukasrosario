@@ -44,6 +44,9 @@ def load_api():
     app.register_blueprint(api_bp, url_prefix="/api")
 
 
+load_api()
+
+
 if __name__ == "__main__":
     load_api()
     app.run(host="0.0.0.0", debug=True, port=os.environ.get("PORT", 80))

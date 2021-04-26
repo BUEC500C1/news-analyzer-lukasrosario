@@ -39,7 +39,6 @@ export const searchNews = async (term) => {
 };
 
 export const importFile = async (title, previewUrl, fileUrl) => {
-  console.log('importing');
   const response = await authFetch('/api/v1/import', {
     method: 'post',
     body: JSON.stringify({

@@ -18,11 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (await apiLogin(inputs)) {
-      console.log('success');
-    } else {
-      console.log('nah');
-    }
+    await apiLogin(inputs);
   };
 
   return (
